@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class IndicatorGraph extends StatelessWidget {
@@ -36,10 +37,10 @@ class IndicatorGraph extends StatelessWidget {
           child: Text(
             '$text ($value)',
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style:const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: textColor,
+              color: AppColors.contentColorBlack
             ),
           ),
         )

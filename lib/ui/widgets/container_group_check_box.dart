@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ContainerGroupCheckBox extends StatefulWidget {
@@ -30,9 +31,10 @@ class _ContainerGroupCheckBoxState extends State<ContainerGroupCheckBox> {
         elevation: 5,
         child: Column(
           children: [
+            const SizedBox(height: 5),
             Text(widget.title,
               style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Divider(height: 1),
+            const Divider(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -43,6 +45,7 @@ class _ContainerGroupCheckBoxState extends State<ContainerGroupCheckBox> {
                 Container(
                   padding: const EdgeInsets.only(right: 10),
                   child: Checkbox(
+                    activeColor: AppColors.contentColorGreen,
                     value: selectAll,
                     onChanged: (bool? value) {
                       setState(() {
@@ -67,6 +70,7 @@ class _ContainerGroupCheckBoxState extends State<ContainerGroupCheckBox> {
                 itemCount: widget.listOption.length,
                 itemBuilder: (BuildContext context, int index) {
                   return CheckboxListTile(
+                    activeColor: AppColors.contentColorGreen,
                     title: Text(widget.listOption[index],
                             style: const TextStyle(fontSize: 10) ),
                     value: selectedOptions.contains(widget.listOption[index]),

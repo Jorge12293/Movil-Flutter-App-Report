@@ -39,6 +39,9 @@ class _GraphPieWidgetState extends State<GraphPieWidget> {
                     Text(widget.titleGraph,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center),
+                      const Divider(
+                        color: AppColors.contentColorWhite,
+                      ),   
                     Expanded(
                       child: AspectRatio(
                         aspectRatio: 1,
@@ -71,24 +74,27 @@ class _GraphPieWidgetState extends State<GraphPieWidget> {
                 )
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 10,bottom: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: List<Widget>.from(
-                  widget.listGraphItem.map((item) => Container(
-                    color: item.index == touchedIndex ? Colors.grey.withOpacity(0.4):Colors.white,
-                    margin: const EdgeInsets.only(bottom: 5,top: 5,right: 10),
-                    child: IndicatorGraph(
-                      color: item.color,
-                      text: item.name,
-                      isSquare: true,
-                      value: item.value.toInt(),
+            Card(
+              elevation: 5,
+              color: AppColors.contentColorGrey,
+              child: Container(
+                margin: const EdgeInsets.only(left: 10,bottom: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: List<Widget>.from(
+                    widget.listGraphItem.map((item) => Container(
+                      margin: const EdgeInsets.only(bottom: 5,top: 5,right: 10),
+                      child: IndicatorGraph(
+                        color: item.color,
+                        text: item.name,
+                        isSquare: true,
+                        value: item.value.toInt(),
+                      )
                     )
-                  )
-                ), 
-                ),
+                  ), 
+                  ),
+                )
               )
             ),
           ],
@@ -126,5 +132,4 @@ class _GraphPieWidgetState extends State<GraphPieWidget> {
   }
 
 }
-
 

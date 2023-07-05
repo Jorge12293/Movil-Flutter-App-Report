@@ -1,6 +1,7 @@
 import 'package:app_report/domain/class/report.dart';
 import 'package:app_report/providers/report_provider.dart';
 import 'package:app_report/ui/pages/company/company_view_provider.dart';
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:app_report/utils/methods/methods_reports.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,60 +32,56 @@ class _CompanyViewState extends State<CompanyView> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuerySize = MediaQuery.of(context).size;
     final listOptionCompany = Provider.of<CompanyViewProvider>(context).listNameCompany;
     final listOptionTypeCar = Provider.of<CompanyViewProvider>(context).listNameTypeCar;
 
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.only(left: 5,right: 5),
-      child: Column(
+      child: 
+      Column(
         children: [
-          ExpansionTile(
-            collapsedIconColor:Colors.black,
-            title: const Text(
-              'Empresa Filtrar Información',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.bold),
-            ),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ContainerGroupCheckBox(
-                    title: 'Empresa',
-                    listOption: listOptionCompany,
-                    handleSaveListOptions: saveListOptionsCompany,
-                    width: 170,
-                    height: 170,
-                  ),
-                  ContainerGroupCheckBox(
-                    title: 'Cat Vehículo',
-                    listOption: listOptionTypeCar,
-                    handleSaveListOptions: saveListOptionsTypeCar,
-                    width: 155,
-                    height: 150,
-                  ),
-                ],
+          Card(
+            elevation: 5,
+            child: ExpansionTile(
+              iconColor: AppColors.contentColorGreen,
+              title: const Text(
+                'Empresa Filtrar Información',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.bold,
+                color: AppColors.contentColorWhite),
               ),
-            ],
-          ),
-          const Divider(
-            height: 5,
-            thickness: 2,
-            color: Colors.blue,
-          ),
-          Expanded(
-            child: ListView(
-              children:const [
-                ContainerGraphs()
+              backgroundColor: AppColors.secondary,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ContainerGroupCheckBox(
+                      title: 'Empresa',
+                      listOption: listOptionCompany,
+                      handleSaveListOptions: saveListOptionsCompany,
+                      width: mediaQuerySize.width * 0.49,
+                      height: 170,
+                    ),
+                    ContainerGroupCheckBox(
+                      title: 'Cat Vehículo',
+                      listOption: listOptionTypeCar,
+                      handleSaveListOptions: saveListOptionsTypeCar,
+                      width: mediaQuerySize.width * 0.45,
+                      height: 150,
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
+
+          const ContainerGraphs()
         ],
       )
     );
-
   }
 }
 

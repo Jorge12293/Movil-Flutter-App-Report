@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class LoaderWidget extends StatelessWidget {
@@ -18,11 +19,13 @@ class LoaderWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children:[
               const SizedBox(height: 5),
-              const Icon(Icons.computer,size: 40,color: Colors.blue),
+              const Icon(Icons.computer,size: 40,color: AppColors.contentColorWhite),
               const SizedBox(height:5),
-              Text(title,style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(title,style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height:20),
-              const CircularProgressIndicator(),
+              const CircularProgressIndicator(
+                color: AppColors.contentColorGrey,
+              ),
               const SizedBox(height: 5),
             ],
           ),

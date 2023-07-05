@@ -5,9 +5,11 @@ import 'package:http/http.dart';
 class ReportService {
    static Future<Response?> listReports() async{
     try {
-      final response = await http.get(Uri.parse(urlListReportLimit));
+      final response = await http.get(Uri.parse(urlListReportLimit))
+                                 .timeout(const Duration(seconds: 30));
       return response;
-    } catch (e) {
+    } catch (e, stackTrace) {
+      print('Error en la solicitud HTTP: $e\n$stackTrace');
       return null;
     }
   }

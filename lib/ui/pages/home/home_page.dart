@@ -4,6 +4,7 @@ import 'package:app_report/data/http/report_service.dart';
 import 'package:app_report/domain/class/report.dart';
 import 'package:app_report/providers/report_provider.dart';
 import 'package:app_report/ui/pages/home/home_view_provider.dart';
+import 'package:app_report/ui/widgets/container_not_load.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../domain/responses/response_list_report.dart';
@@ -32,18 +33,25 @@ class _HomePageState extends State<HomePage> {
     final reportProvider = Provider.of<ReportProvider>(context, listen: false);
     isLoadData=true;
     setState(() {});
-    final response = await ReportService.listReports();
-    print(response?.statusCode);
-    if(response != null && response.statusCode==200){
-      listReport = responseListReportFromJson(utf8.decode(response.bodyBytes));  
-      reportProvider.listReport = listReport;
+    try {
+      final response = await ReportService.listReports();
+      if(response != null && response.statusCode==200){
+        listReport = responseListReportFromJson(utf8.decode(response.bodyBytes));  
+        reportProvider.listReport = listReport;
+      }
+      isLoadData=false;
+      setState(() {});
+    } catch (e) {
+      print(e);
+      isLoadData=false;
+      setState(() {});
     }
-    isLoadData=false;
-    setState(() {});
+
   }
 
   @override
   Widget build(BuildContext context) {
+
 
     if(isLoadData){
       return const Scaffold(
@@ -51,12 +59,9 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-
     if(!isLoadData && listReport.isEmpty){
       return const Scaffold(
-          body: Center(
-            child: Text('No fue posible caragar información.'),
-          ),
+          body: ContainerNotLoad(),
         );
     }
 

@@ -12,16 +12,11 @@ class CardTitle extends StatelessWidget {
     return Card(
       elevation: 5,
       child: Container(
-        margin:const EdgeInsets.only(top: 5,bottom: 5),
+        margin:const EdgeInsets.only(top: 15,bottom: 15),
         width: double.infinity,
-        child: Column(
-          children: [
-            Text('REPORTE: $title',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center),
-            const Divider(height: 2)  
-          ],
-        )
+        child: Text('REPORTE: $title',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center)
       ),
     );
   }

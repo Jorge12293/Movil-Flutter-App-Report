@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:app_report/ui/widgets/card_title.dart';
 import 'package:app_report/ui/widgets/graph_bar_medio.dart';
 import 'package:app_report/ui/widgets/graph_pie_provenance_leads.dart';
@@ -23,6 +24,7 @@ class HomeView extends StatelessWidget {
       padding: const EdgeInsets.only(left: 5,right: 5),
       child: Column(
         children:[
+
           CardTitle(title: nameSelectCompany),
           const ListCompany(),
           GraphPieProvenanceLeads(listReport: listReportFilter),
@@ -38,7 +40,6 @@ class HomeView extends StatelessWidget {
     );
   }
 }
-
 
 
 class ListCompany extends StatelessWidget {
@@ -80,7 +81,9 @@ class CardCompanyItem extends StatelessWidget {
       margin: const EdgeInsets.only(left: 5,right: 5,bottom: 10,top: 10),
         child: Card(
           elevation: 5,
-          color: provider.nameSelectCompany == title ? Colors.grey : Colors.white,
+          color: provider.nameSelectCompany == title 
+                ? AppColors.contentColorGreen 
+                : AppColors.contentColorWhite,
           child: Padding(
             padding: const EdgeInsets.all(4),
             child: Center(

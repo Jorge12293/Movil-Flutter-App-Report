@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:app_report/ui/widgets/indicator_graph.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -28,6 +29,9 @@ class _GraphBarWidgetState extends State<GraphBarWidget> {
           Text(widget.title,
             style: const TextStyle(fontWeight: FontWeight.bold),
             textAlign: TextAlign.center),
+          const Divider(
+            color: AppColors.contentColorWhite,
+          ),  
           Container(
             height: 200,
             margin:const EdgeInsets.only(top: 10),
@@ -59,21 +63,28 @@ class _GraphBarWidgetState extends State<GraphBarWidget> {
               ],
             )
           ),
-           Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: List<Widget>.from(
-              widget.listGraphBarItem.map((item) => Container(
-                margin: const EdgeInsets.only(left: 10,bottom: 10),
-                child: IndicatorGraph(
-                  color: item.barColor,
-                  text: item.label,
-                  isSquare: true,
-                  value: item.value.toInt(),
-                )
+          Card(
+            elevation: 5,
+            color: AppColors.contentColorGrey,
+            child: Container(
+              margin: EdgeInsets.only(top:5,bottom: 5),
+              child: Column(    
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List<Widget>.from(
+                  widget.listGraphBarItem.map((item) => Container(
+                    margin: const EdgeInsets.only(left: 10,bottom: 10),
+                    child: IndicatorGraph(
+                      color: item.barColor,
+                      text: item.label,
+                      isSquare: true,
+                      value: item.value.toInt(),
+                    )
+                  )
+                ), 
+                ),
               )
-            ), 
-            ),
+            )
           ),
         ],
       )

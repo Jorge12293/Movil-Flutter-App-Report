@@ -1,8 +1,5 @@
-
-import 'package:app_report/ui/pages/company/company_page.dart';
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../pages/city/city_page.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -17,17 +14,17 @@ class DrawerWidget extends StatelessWidget {
             Container(
               height: 100,
               decoration: const BoxDecoration(
-                color: Colors.blue,
+                color: AppColors.secondary,
               ),
               child:DrawerHeader(
                 child: Row(
                   children:const [
-                    Icon(Icons.donut_small,color: Colors.white,size: 30),
+                    Icon(Icons.donut_small,color: AppColors.contentColorGreen,size: 30),
                     SizedBox(width: 10),
                     Text(
                       'Gráfico',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.contentColorWhite,
                         fontSize: 24,
                       ),
                     ),
@@ -43,11 +40,8 @@ class DrawerWidget extends StatelessWidget {
               ),
               title: const Text('Empresas'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CompanyPage()),
-                );
-               },
+                Navigator.pushNamed(context, 'company');
+              },
             ),
             ListTile(
               leading:const Hero(
@@ -56,10 +50,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               title: const Text('Ciudades'),
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const CityPage()),
-                );
+                Navigator.pushNamed(context, 'city');
                },
             ),
           ],

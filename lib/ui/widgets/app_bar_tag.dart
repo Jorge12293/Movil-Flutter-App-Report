@@ -1,3 +1,4 @@
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,7 +10,7 @@ AppBar appBarTag(title,nameTag,icon){
           Text(title),
           Hero(
             tag: nameTag,
-            child:Icon(icon)
+            child:Icon(icon,color: AppColors.contentColorGreen)
           ),
         ],
       ),

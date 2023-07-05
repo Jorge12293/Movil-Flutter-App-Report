@@ -2,6 +2,7 @@ import 'package:app_report/domain/class/report.dart';
 import 'package:app_report/providers/report_provider.dart';
 import 'package:app_report/ui/pages/city/city_view_provider.dart';
 import 'package:app_report/ui/pages/company/company_view_provider.dart';
+import 'package:app_report/ui/resources/app_colors.dart';
 import 'package:app_report/utils/methods/methods_reports.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,60 +33,54 @@ class _CityViewState extends State<CityView> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuerySize = MediaQuery.of(context).size;
     final listOptionCity = Provider.of<CityViewProvider>(context).listNameCity;
     final listOptionTypeCar = Provider.of<CityViewProvider>(context).listNameTypeCar;
-
-    return Padding(
+    
+    
+    return SingleChildScrollView(
       padding: const EdgeInsets.only(left: 5,right: 5),
       child: Column(
         children: [
-          ExpansionTile(
-            collapsedIconColor:Colors.black,
-            title: const Text(
-              'Ciudad Filtrar Información',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.bold),
-            ),
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ContainerGroupCheckBox(
-                    title: 'Ciudad',
-                    listOption: listOptionCity,
-                    handleSaveListOptions: saveListOptionsCity,
-                    width: 170,
-                    height: 170,
-                  ),
-                  ContainerGroupCheckBox(
-                    title: 'Cat Vehículo',
-                    listOption: listOptionTypeCar,
-                    handleSaveListOptions: saveListOptionsTypeCar,
-                    width: 155,
-                    height: 150,
-                  ),
-                ],
+          Card(
+            child:ExpansionTile(
+             iconColor: AppColors.contentColorGreen,
+              title: const Text(
+                'Ciudad Filtrar Información',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.bold,
+                color: AppColors.contentColorWhite),
               ),
-            ],
-          ),
-          const Divider(
-            height: 5,
-            thickness: 2,
-            color: Colors.blue,
-          ),
-          Expanded(
-            child: ListView(
-              children:const [
-                ContainerGraphs()
+              backgroundColor: AppColors.secondary,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ContainerGroupCheckBox(
+                      title: 'Ciudad',
+                      listOption: listOptionCity,
+                      handleSaveListOptions: saveListOptionsCity,
+                      width: mediaQuerySize.width * 0.45,
+                      height: 170,
+                    ),
+                    ContainerGroupCheckBox(
+                      title: 'Cat Vehículo',
+                      listOption: listOptionTypeCar,
+                      handleSaveListOptions: saveListOptionsTypeCar,
+                      width: mediaQuerySize.width * 0.45,
+                      height: 150,
+                    ),
+                  ],
+                ),
               ],
-            ),
+            )
           ),
+          const ContainerGraphs(),
         ],
       )
     );
-
   }
 }
 
